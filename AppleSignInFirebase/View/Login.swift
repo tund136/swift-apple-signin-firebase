@@ -9,6 +9,8 @@ import SwiftUI
 import AuthenticationServices
 
 struct Login: View {
+    @StateObject private var loginData = LoginViewModel()
+    
     var body: some View {
         ZStack {
             Image("bg")
@@ -46,13 +48,22 @@ struct Login: View {
                 // Login Button
                 SignInWithAppleButton { (request) in
                     // Requesting parameters from apple login
+                    loginData.nonce = randomNonceString()
                     request.requestedScopes = [.email, .fullName]
+                    request.nonce = sha256(loginData.nonce)
+                    
                 } onCompletion: { (result) in
                     // Getting error or success
                     switch result {
                     case .success(let user):
                         print("Success!")
                         // Do login with Firebase
+                        guard let credential = user.credential as? ASAuthorizationAppleIDCredential
+                        else {
+                            print("Error with Firebase")
+                            return
+                        }
+                        loginData.authenticate(credential: credential)
                     case .failure(let error):
                         print(error.localizedDescription)
                     }

@@ -7,14 +7,44 @@
 
 import SwiftUI
 import CryptoKit // Needed CryptoKit
+import AuthenticationServices
+import Firebase
 
 class LoginViewModel: ObservableObject {
+    @Published var nonce = ""
     
+    func authenticate(credential: ASAuthorizationAppleIDCredential) {
+        // Getting token
+        guard let token = credential.identityToken
+        else {
+            print("Error with Firebase")
+            return
+        }
+        
+        // Token String
+        guard let tokenString = String(data: token, encoding: .utf8)
+        else {
+            print("Error with Token")
+            return
+        }
+        
+        let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokenString, rawNonce: nonce)
+        
+        Auth.auth().signIn(with: firebaseCredential) { (result, err) in
+            if let error = err {
+                print(error.localizedDescription)
+                return
+            }
+            
+            // User Logged into Firebase successfully
+            print("Logged In Success")
+        }
+    }
 }
 
 // Helpers for Apple Login with Firebase
 
-private func sha256(_ input: String) -> String {
+func sha256(_ input: String) -> String {
     let inputData = Data(input.utf8)
     let hashedData = SHA256.hash(data: inputData)
     let hashString = hashedData.compactMap {
@@ -26,7 +56,7 @@ private func sha256(_ input: String) -> String {
 
 // https://firebase.google.com/docs/auth/ios/apple?authuser=0
 // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-private func randomNonceString(length: Int = 32) -> String {
+func randomNonceString(length: Int = 32) -> String {
     precondition(length > 0)
     let charset: Array<Character> =
     Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
