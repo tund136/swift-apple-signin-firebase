@@ -11,6 +11,8 @@
 		AD6E490E270DB10200189516 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6E490D270DB10200189516 /* ContentView.swift */; };
 		AD6E4910270DB10300189516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD6E490F270DB10300189516 /* Assets.xcassets */; };
 		AD6E4913270DB10300189516 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD6E4912270DB10300189516 /* Preview Assets.xcassets */; };
+		AD6E491E270DB37200189516 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6E491D270DB37200189516 /* Home.swift */; };
+		AD6E4920270DB37800189516 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6E491F270DB37800189516 /* Login.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		AD6E490F270DB10300189516 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD6E4912270DB10300189516 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AD6E4919270DB28700189516 /* AppleSignInFirebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppleSignInFirebase.entitlements; sourceTree = "<group>"; };
+		AD6E491D270DB37200189516 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		AD6E491F270DB37800189516 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,6 @@
 				AD6E491B270DB31500189516 /* View */,
 				AD6E4919270DB28700189516 /* AppleSignInFirebase.entitlements */,
 				AD6E490B270DB10200189516 /* AppleSignInFirebaseApp.swift */,
-				AD6E490D270DB10200189516 /* ContentView.swift */,
 				AD6E490F270DB10300189516 /* Assets.xcassets */,
 				AD6E4911270DB10300189516 /* Preview Content */,
 			);
@@ -74,6 +77,9 @@
 		AD6E491B270DB31500189516 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD6E490D270DB10200189516 /* ContentView.swift */,
+				AD6E491D270DB37200189516 /* Home.swift */,
+				AD6E491F270DB37800189516 /* Login.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,7 +162,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD6E490E270DB10200189516 /* ContentView.swift in Sources */,
+				AD6E491E270DB37200189516 /* Home.swift in Sources */,
 				AD6E490C270DB10200189516 /* AppleSignInFirebaseApp.swift in Sources */,
+				AD6E4920270DB37800189516 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
