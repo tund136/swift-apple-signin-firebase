@@ -12,6 +12,7 @@ import Firebase
 
 class LoginViewModel: ObservableObject {
     @Published var nonce = ""
+    @AppStorage("log_status") var log_Status = false
     
     func authenticate(credential: ASAuthorizationAppleIDCredential) {
         // Getting token
@@ -38,6 +39,10 @@ class LoginViewModel: ObservableObject {
             
             // User Logged into Firebase successfully
             print("Logged In Success")
+            // Directing User to Home View
+            withAnimation(.easeInOut) {
+                self.log_Status = true
+            }
         }
     }
 }
