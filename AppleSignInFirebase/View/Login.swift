@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct Login: View {
     var body: some View {
@@ -41,6 +42,26 @@ struct Login: View {
                 }
                 
                 Spacer()
+                
+                // Login Button
+                SignInWithAppleButton { (request) in
+                    // Requesting parameters from apple login
+                    request.requestedScopes = [.email, .fullName]
+                } onCompletion: { (result) in
+                    // Getting error or success
+                    switch result {
+                    case .success(let user):
+                        print("Success!")
+                        // Do login with Firebase
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+                .signInWithAppleButtonStyle(.white)
+                .frame(height: 55)
+                .clipShape(Capsule())
+                .padding(.horizontal)
+                .offset(y: -30)
             }
         }
     }
